@@ -38,8 +38,8 @@ FORMS += \
 RESOURCES += \
     img/pic.qrc
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../Qt/Tools/mingw530_32/i686-w64-mingw32/lib/ -lwinscar
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../Qt/Tools/mingw530_32/i686-w64-mingw32/lib/ -lwinscard
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../../../Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/lib/ -lwinscar
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../../../Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/lib/ -lwinscard
 
-INCLUDEPATH += $$PWD/../../Qt/Tools/mingw530_32/i686-w64-mingw32/include
-DEPENDPATH += $$PWD/../../Qt/Tools/mingw530_32/i686-w64-mingw32/include
+INCLUDEPATH += $$PWD/../../../../../Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include
+DEPENDPATH += $$PWD/../../../../../Qt/Qt5.9.0/Tools/mingw530_32/i686-w64-mingw32/include

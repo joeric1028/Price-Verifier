@@ -9,6 +9,7 @@ multithread::~multithread()
     mStop = true;
     CardReleaseContext();
     CardFreeMemory();
+
 }
 
 void multithread::start()
@@ -22,10 +23,11 @@ void multithread::start()
         if(mStop != true)
         {
             CardListReaders();
-            if(returnCardReaderStatus == false)
-            {
-                CardEstablishContext();
+            if(returnCardReaderStatus == false){
+            CardEstablishContext();
+
             }else{
+
                 if(cardUID==NULL)
                 {
                     CardListReaders();
@@ -37,16 +39,13 @@ void multithread::start()
                 {
                     qDebug()<<"Card Found "<<cardUID;
                     emit onNumber(cardUID);
-                    mStop = true;
                     return;
                     CardStatus();
                 }
+
             }
-        }
-        else
-        {
-            return;
-        }
+
+        }else return;
     }
 }
 

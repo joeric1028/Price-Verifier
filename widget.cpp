@@ -32,15 +32,20 @@ void Widget::scanScard()
 void Widget::timeout2()
 {
     ui->stackedWidget->setCurrentWidget(ui->page_verify);
-    mJob->stop();
+
+    if(!test.isRunning()){
+        scanScard();
+    }
 }
 
 void Widget::newNumber(QString cardUid)
 {
+    mJob->stop();
     cardUID = cardUid;
     qDebug() << "Received UID: " << cardUID;
     ui->productData->setText("No Data");
     ui->priceData->setText("No Data");
+
     if(!cardUID.isEmpty())
     {
         ui->stackedWidget->setCurrentWidget(ui->page_product_details);
@@ -48,12 +53,16 @@ void Widget::newNumber(QString cardUid)
         if(qry->exec())
         {
             qDebug() << "Execute:" << qry->lastQuery() << qry->lastError();
-            while(qry->next()){
+            qry->next();
                 ui->productData->setText(qry->value("productName").toString());
                 ui->priceData->setText("PHP " + qry->value("price").toString());
                 qDebug() << "Result: " << qry->value("productName").toString() << qry->value("price").toString();
-            }
+
             time->start(5000);
+            if(test.isRunning()){
+                mJob->pause();
+            }
+
             connect(time, SIGNAL(timeout()), this, SLOT(timeout2()));
         }
     }

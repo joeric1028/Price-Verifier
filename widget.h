@@ -47,7 +47,7 @@ public:
         db.setDatabaseName("priceverifier");
         db.setHostName("localhost");
         db.setUserName("root");
-        db.setPassword("defaultricardo");
+        db.setPassword("z1x2c3v4a1s2");
         db.setPort(3306);
 
         if(!db.open())
